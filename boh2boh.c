@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 static int
 bin(char *s)
@@ -40,6 +41,7 @@ hin(char *s)
 		n += *s <= 58 ? *s - '0' : *s - 'A' + 10;
 		++s;
 	}
+	return n;
 }
 
 static void
@@ -69,4 +71,33 @@ static void
 hout(int n)
 {
 	printf("%X", n);
+}
+
+static int(*in[])(char *) = {
+	['b'] = bin,
+	['o'] = oin,
+	['h'] = hin
+};
+
+static void(*out[])(int) = {
+	['b'] = bout,
+	['o'] = oout,
+	['h'] = hout
+};
+
+int
+main(int argc, char **argv)
+{
+	char *name, *in;
+	int n;
+
+	if (strcmp("boh2boh", argv[0])) {
+		name = argv[0];
+		in = argv[1];
+	} else {
+		name = argv[1];
+		in = argv[2];
+	}
+	n = in[(int)name[0]](in);
+	out[(int)name[2]](n);
 }
