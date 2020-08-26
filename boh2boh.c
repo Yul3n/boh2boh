@@ -88,16 +88,28 @@ static void(*out[])(int) = {
 int
 main(int argc, char **argv)
 {
-	char *name, *in;
+	char *name, *ins;
 	int n;
 
 	if (strcmp("boh2boh", argv[0])) {
 		name = argv[0];
-		in = argv[1];
+		if (argc < 2) {
+				fprintf(stderr, "An argument is needed to run the command.\n");
+				exit(1);
+		}
+		ins = argv[1];
 	} else {
+		if (argc < 2) {
+				fprintf(stderr, "An command is needed.\n");
+				exit(1);
+		}
 		name = argv[1];
-		in = argv[2];
+		if (argc < 3) {
+				fprintf(stderr, "An argument is needed to run the command.\n");
+				exit(1);
+		}
+		ins = argv[2];
 	}
-	n = in[(int)name[0]](in);
+	n = in[(int)name[0]](ins);
 	out[(int)name[2]](n);
 }
