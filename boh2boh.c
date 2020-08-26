@@ -91,7 +91,7 @@ main(int argc, char **argv)
 	char *name, *ins;
 	int n;
 
-	if (strcmp("boh2boh", argv[0])) {
+	if (strcmp("boh2boh", argv[0]) && strcmp("./boh2boh", argv[0])) {
 		name = argv[0];
 		if (argc < 2) {
 				fprintf(stderr, "An argument is needed to run the command.\n");
@@ -112,4 +112,5 @@ main(int argc, char **argv)
 	}
 	n = in[(int)name[0]](ins);
 	out[(int)name[2]](n);
+	printf("\n");
 }
