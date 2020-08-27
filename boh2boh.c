@@ -58,7 +58,7 @@ bout(int n)
 		n >>= 1;
 	} while(n);
 	while (*p != '\0')
-		putchar(*(p++));
+		putchar(*(p--));
 }
 
 static void
@@ -91,22 +91,25 @@ main(int argc, char **argv)
 	char *name, *ins;
 	int n;
 
-	if (strcmp("boh2boh", argv[0]) && strcmp("./boh2boh", argv[0])) {
+	if (strcmp("boh2boh", argv[0]) &&
+	    strcmp("./boh2boh", argv[0])) {
 		name = argv[0];
 		if (argc < 2) {
-				fprintf(stderr, "An argument is needed to run the command.\n");
-				exit(1);
+			fprintf(stderr,
+			        "An argument is needed to run the command.\n");
+			exit(1);
 		}
 		ins = argv[1];
 	} else {
 		if (argc < 2) {
-				fprintf(stderr, "An command is needed.\n");
-				exit(1);
+			fprintf(stderr, "An command is needed.\n");
+			exit(1);
 		}
 		name = argv[1];
 		if (argc < 3) {
-				fprintf(stderr, "An argument is needed to run the command.\n");
-				exit(1);
+			fprintf(stderr,
+			        "An argument is needed to run the command.\n");
+			exit(1);
 		}
 		ins = argv[2];
 	}
